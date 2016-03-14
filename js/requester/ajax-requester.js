@@ -4,7 +4,7 @@ app.requester = (function () {
     function Requester(appId, appSecret) {
         this.appId = appId;
         this.appSecret = appSecret;
-        this.baseUrl = 'https://baas.kinvey.com/';
+        this.baseUrl = 'https://baas.kinvey.com/appdata';
     }
 
     Requester.prototype.get = function(url, useSession) {

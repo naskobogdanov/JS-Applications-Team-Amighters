@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
     var appId= 'kid_-1QIDDx_JZ';
     var restAPI = '306345501b3e4470a8470566ab1044c2';
-    var baseUrl = 'https://baas.kinvey.com/';
+    var baseUrl = 'https://baas.kinvey.com';
 
     var headers = app.headers.load(appId, restAPI);
     var requester = app.requester.load();
