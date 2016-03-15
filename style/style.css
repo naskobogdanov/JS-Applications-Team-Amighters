@@ -34,7 +34,9 @@ ul, li {
     background-color: black;
     border: 0px solid black;
     color: white;
-    font-size: 1.3em;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    //border-radius: 20px;
 }
 
 .data input {

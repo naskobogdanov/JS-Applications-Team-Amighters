@@ -12,7 +12,13 @@ app.userModel = (function() {
     };
 
     UserModel.prototype.register = function(data) {
-        return this._requester.post(this.serviceUrl, data);
+        if (data.username.length > 3) {
+            return this._requester.post(this.serviceUrl, data);
+        }
+        else {
+            //This is temporary :)
+            alert("You should enter username with at least 3 symbols!");
+        }
     };
 
     UserModel.prototype.logout = function() {
