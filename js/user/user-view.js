@@ -1,67 +1,41 @@
 var app = app || {};
 
-app.userViews = (function() {
-    function UserViews() {
-        this.loginView = {
-            loadLoginView: loadLoginView
-        };
-        this.registerView = {
-            loadRegisterView: loadRegisterView
-        };
-    }
-
-    function loadLoginView (selector) {
-        $.get('templates/login.html', function(template) {
-            var outHtml = Mustache.render(template);
-            $(selector).html(outHtml);
-        }).then(function() {
-            $('#login-button').click(function() {
-                var username = $('#username').val();
-                var password = $('#password').val();
-
-                $.sammy(function() {
+app.userViews = (function () {
+    function loadLoginPage(selector) {
+        $.get('templates/login.html', function(templ) {
+            $(selector).html(templ);
+            $('#login').on('click', function(e) {
+                var username = $('#username').val(),
+                    password = $('#password').val();
+                Sammy(function() {
                     this.trigger('login', {username: username, password: password});
-                });
-                return false;
+                })
             })
-        }).done();
-
+        })
     }
 
-    function loadRegisterView (selector) {
-        $.get('templates/register.html', function(template) {
-            var outHtml = Mustache.render(template);
-            $(selector).html(outHtml);
-        }).then(function() {
-            $('#register-button').click(function() {
-                var username = $('#username');
-                var password = $('#password');
-                var repeatPass = $('#confirm-password');
+    function loadRegisterPage(selector) {
+        $.get('templates/register.html', function(templ) {
+            $(selector).html(templ);
+            $('#register').on('click', function(e) {
+                var username = $('#username').val(),
+                    password = $('#password').val(),
+                    repeatPass = $('#repeatPassword').val();
 
-                if(repeatPass.val() !== password.val()) {
-                    noty({
-                        theme: 'relax',
-                        text: 'Passwords do not match!',
-                        type:'error',
-                        timeout: 2000,
-                        closeWith: ['click']
-                    });
-                    password.val('');
-                    repeatPass.val('');
-                } else {
-                    $.sammy(function() {
-                        this.trigger('register', {username: username.val(), password: password.val()});
-                    });
+                if(password === repeatPass) {
+                    Sammy(function() {
+                        this.trigger('register', {username: username, password: password});
+                    })
                 }
-
-                return false;
             })
-        }).done();
+        })
     }
-
     return {
         load: function() {
-            return new UserViews();
+            return {
+                loadLoginPage: loadLoginPage,
+                loadRegisterPage: loadRegisterPage
+            }
         }
     }
 }());

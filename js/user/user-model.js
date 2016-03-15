@@ -2,34 +2,27 @@ var app = app || {};
 
 app.userModel = (function() {
     function UserModel(requester) {
-        this.baseUrl = baseUrl;
-        this.requester = requester;
-        this.headers = headers;
+        this._requester = requester;
+        this.serviceUrl = requester.baseUrl + 'user/' + requester.appId;
     }
 
-    UserModel.prototype.login = function(username, password) {
-        var serviceUrl = this.baseUrl + 'users/kid_-1QIDDx_JZ/' +'/' + username + '&password=' + password;
-        return this.requester.get(serviceUrl, this.headers.getHeaders());
+    UserModel.prototype.login = function(data) {
+        var loginUrl = this.serviceUrl + '/login';
+        return this._requester.post(loginUrl, data);
     };
 
-    UserModel.prototype.register = function(username, password, fullName) {
-        var serviceUrl = this.baseUrl + 'users/kid_-1QIDDx_JZ/';
-        var data = {
-            username: username,
-            password: password,
-            fullName: fullName
-        };
-        return this.requester.post(serviceUrl, this.headers.getHeaders(), data);
+    UserModel.prototype.register = function(data) {
+        return this._requester.post(this.serviceUrl, data);
     };
 
     UserModel.prototype.logout = function() {
-        var serviceUrl = this.baseUrl + 'logout';
-        return this.requester.post(serviceUrl, this.headers.getHeaders(true));
+        var logoutUrl = this.serviceUrl + '/_logout';
+        return this._requester.post(logoutUrl, null, true);
     };
 
     return {
-        load: function(baseUrl, requester, headers) {
-            return new UserModel(baseUrl, requester, headers);
+        load: function(requester) {
+            return new UserModel(requester);
         }
     }
 }());

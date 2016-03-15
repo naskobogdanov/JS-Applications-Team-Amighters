@@ -4,7 +4,7 @@ app.requester = (function () {
     function Requester(appId, appSecret) {
         this.appId = appId;
         this.appSecret = appSecret;
-        this.baseUrl = 'https://baas.kinvey.com/appdata';
+        this.baseUrl = 'https://baas.kinvey.com/';
     }
 
     Requester.prototype.get = function(url, useSession) {
@@ -23,7 +23,7 @@ app.requester = (function () {
         return this.makeRequest('DELETE', url, null, useSession);
     };
 
-    Requester.prototype.makeRequest = function(method, headers, url, data) {
+    Requester.prototype.makeRequest = function(method, url, data, useSession) {
         var token,
             defer = Q.defer(),
             _this = this,

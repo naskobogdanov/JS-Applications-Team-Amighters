@@ -2,13 +2,12 @@ var app = app || {};
 
 (function() {
     var appId= 'kid_-1QIDDx_JZ';
-    var restAPI = '306345501b3e4470a8470566ab1044c2';
-    var baseUrl = 'https://baas.kinvey.com';
+    var appSecret = '306345501b3e4470a8470566ab1044c2';
 
-    var headers = app.headers.load(appId, restAPI);
-    var requester = app.requester.load();
+    var requester = app.requester.config(appId, appSecret);
 
-    var userModel = app.userModel.load(baseUrl, requester, headers);
+
+    var userModel = app.userModel.load( requester);
     var userViewBag = app.userViews.load();
     var userController = app.userController.load(userModel, userViewBag);
 
@@ -63,11 +62,11 @@ var app = app || {};
         });
 
         this.bind('login', function(e, data) {
-            userController.login(data.username, data.password);
+            userController.login(data);
         });
 
         this.bind('register', function(e, data) {
-            userController.register(data.username, data.password);
+            userController.register(data);
         });
 
     });
