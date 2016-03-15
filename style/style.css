@@ -10,8 +10,45 @@ body {
     padding: 15px;
 }
 
+.main-header {
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
 ul, li {
     margin-bottom: 0;
+}
+
+.data {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.panel {
+    max-width: 170px;
+    margin: 0 auto;
+}
+
+.button {
+    background-color: black;
+    border: 0px solid black;
+    color: white;
+    font-size: 1.3em;
+}
+
+.data input {
+    display: block;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+label {
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+    min-width: 150px;
 }
 
 .site-header {
