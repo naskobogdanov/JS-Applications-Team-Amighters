@@ -11,12 +11,6 @@ app.picturesModel = (function () {
         return this.requester.get(requestId, true)
     };
 
-    //PicturesModel.prototype.getAllPictures = function () {
-    //    var requestId = this.serviceUrl;
-    //    console.log(requestId);
-    //    return this.requester.get(requestId, true)
-    //};
-
     PicturesModel.prototype.addNewPicture = function (picture) {
         return this.requester.post(this.serviceUrl, picture, true)
     };

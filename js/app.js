@@ -79,10 +79,6 @@ var app = app || {};
             picturesController.addPicture(data);
         });
 
-        this.bind('add-picture', function (e, data) {
-            //picturesController.showPictures(data);
-        });
-
     });
 
     app.router.run('#/');

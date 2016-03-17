@@ -7,7 +7,6 @@ app.pictureController = (function () {
     }
 
     PictureController.prototype.showPictures = function (data) {
-        console.log('123' + data);
         var _this = this;
         this._model.getAllPictures()
             .then(function (pictures) {

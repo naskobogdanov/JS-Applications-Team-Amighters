@@ -45,8 +45,6 @@ app.pictureViews = (function () {
 
     };
 
-
-
     return {
         load: function () {
             return new PictureViews();
