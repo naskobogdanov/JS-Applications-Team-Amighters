@@ -19,9 +19,10 @@ app.userController = (function() {
             .then(function(successData) {
                 sessionStorage['sessionAuth'] = successData._kmd.authtoken;
                 sessionStorage['userId'] = successData._id;
+                sessionStorage['username'] = successData.username;
 
                 Sammy(function() {
-                    this.trigger('redirectUrl', {url: '#/menu-home'});
+                    window.location = '#/home/';
                 });
             }).done();
     };
@@ -32,8 +33,9 @@ app.userController = (function() {
                 console.log("here");
                 sessionStorage['sessionAuth'] = successData._kmd.authtoken;
                 sessionStorage['userId'] = successData._id;
+                sessionStorage['username'] = successData.username;
                 Sammy(function() {
-                    this.trigger('redirectUrl', {url: '#/menu-home'});
+                    window.location = '#/home/';
                 });
             }).done();
     };
@@ -43,7 +45,7 @@ app.userController = (function() {
             .then(function() {
                 sessionStorage.clear();
                 Sammy(function() {
-                    this.trigger('redirectUrl', {url: '#/login'});
+                    window.location = '#/login/';
                 });
             }).done();
     };
