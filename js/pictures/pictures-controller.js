@@ -12,7 +12,6 @@ app.pictureController = (function () {
             .then(function (pictures) {
                 _this._viewBag.showPictures(pictures);
                 for (var i = 0; i < pictures.length; i++) {
-                    console.log(pictures[i].base64data);
                     var e = $('<img src="' + pictures[i].base64data + '">');
                     $('#show-pictures').append(e);
                 }
