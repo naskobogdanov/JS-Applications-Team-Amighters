@@ -27,6 +27,9 @@ app.pictureController = (function () {
             pictureOutputModel = obj.getPictureInputModel();
 
         this._model.addNewPicture(pictureOutputModel);
+
+        setTimeout(function(){ location.reload(); }, 6000);
+
     };
 
     return {
