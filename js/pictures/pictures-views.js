@@ -4,7 +4,7 @@ app.pictureViews = (function () {
     function PictureViews() {
     }
 
-    PictureViews.prototype.showPictures = function (data, albumId) {
+    PictureViews.prototype.showPictures = function (data) {
         var _this = this;
         $.get('templates/add-picture.html', function (templ) {
             var json = {
@@ -25,9 +25,10 @@ app.pictureViews = (function () {
                         file = this.files[0];
 
                     reader.addEventListener("load", function () {
-                        var comment = $('#picture-name').val();
+
                         $.sammy(function () {
-                            this.trigger('add-picture', {base64data: reader.result, albumId: albumId, comment: comment})
+                            console.log('uploading')
+                            this.trigger('add-picture', {base64data: reader.result})
                         })
                     }, false);
 
@@ -37,6 +38,7 @@ app.pictureViews = (function () {
                 });
 
                 createPictureDiv.append(pictureName, uploadLabel, pictureFile);
+                console.log('5' + createPictureDiv);
                 $('#pictures').append(createPictureDiv);
             });
         });

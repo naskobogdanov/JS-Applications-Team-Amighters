@@ -6,11 +6,17 @@ app.pictureController = (function () {
         this._viewBag = viewBag;
     }
 
-    PictureController.prototype.showPictures = function () {
+    PictureController.prototype.showPictures = function (data) {
+        console.log('123' + data);
         var _this = this;
         this._model.getAllPictures()
             .then(function (pictures) {
                 _this._viewBag.showPictures(pictures);
+                for (var i = 0; i < pictures.length; i++) {
+                    console.log(pictures[i].base64data);
+                    var e = $('<img src="' + pictures[i].base64data + '">');
+                    $('#show-pictures').append(e);
+                }
             })
     };
 
@@ -20,7 +26,7 @@ app.pictureController = (function () {
             obj = app.pictureInputModel(data),
             pictureOutputModel = obj.getPictureInputModel();
 
-        this._model.addNewPicture(pictureOutputModel)
+        this._model.addNewPicture(pictureOutputModel);
     };
 
     return {

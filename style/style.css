@@ -78,3 +78,8 @@ nav ul li a{
 nav ul li a:hover {
     color: tomato;
 }
+
+#show-pictures {
+    margin: 0 auto;
+    max-width: 800px;
+}
