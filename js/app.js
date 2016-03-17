@@ -7,12 +7,17 @@ var app = app || {};
     var requester = app.requester.config(appId, appSecret);
 
 
-    var userModel = app.userModel.load( requester);
+    var userModel = app.userModel.load(requester);
     var userViewBag = app.userViews.load();
     var userController = app.userController.load(userModel, userViewBag);
 
     var homeViewBag = app.homeViews.load();
     var homeController = app.homeController.load(homeViewBag);
+
+    var picturesModel = app.picturesModel.load(requester);
+    var picturesViewBag = app.pictureViews.load();
+    var picturesController = app.pictureController.load(picturesModel, picturesViewBag);
+
 
     app.router = Sammy(function() {
         var selector = '#main';
@@ -47,6 +52,7 @@ var app = app || {};
 
         this.get('#/home/', function() {
             homeController.homeScreen(selector);
+            picturesController.showPictures();
         });
 
         this.get('#/login/', function() {
